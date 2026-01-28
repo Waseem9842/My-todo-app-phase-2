@@ -208,3 +208,14 @@ Wait for consent; never auto-create ADRs. Group related decisions (stacks, authe
 
 ## Code Standards
 See `.specify/memory/constitution.md` for code quality, testing, performance, security, and architecture principles.
+
+## Active Technologies
+- Python 3.13+ + FastAPI, SQLModel, Pydantic, uvicorn (001-backend-api-data-layer)
+- Neon Serverless PostgreSQL via SQLModel ORM (001-backend-api-data-layer)
+- Python 3.13+ + FastAPI, PyJWT, python-jose, cryptography (002-auth-security)
+- N/A (stateless authentication) (002-auth-security)
+- TypeScript 5.0+ (with JavaScript support) + Next.js 16+, React 19+, Better Auth, Tailwind CSS, SWR or React Query (003-frontend-web-app)
+- Browser local storage (for JWT tokens), HTTP cookies (via Better Auth) (003-frontend-web-app)
+
+## Recent Changes
+- 001-backend-api-data-layer: Added Python 3.13+ + FastAPI, SQLModel, Pydantic, uvicorn

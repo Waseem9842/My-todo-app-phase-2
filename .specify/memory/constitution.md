@@ -1,55 +1,42 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# Phase II – Todo Full-Stack Web Application Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Spec-First, Agentic Workflow
+All development follows the Agentic Dev Stack workflow: Spec → Plan → Tasks → Implementation. No manual coding is allowed; all behavior must be defined in specifications before implementation begins.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Clear Separation of Frontend, Backend, and Authentication Concerns
+Maintain strict separation between frontend (Next.js), backend (FastAPI), and authentication layers (Better Auth + JWT). Each layer has clearly defined responsibilities and interfaces.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Security-by-Design with Strict User Isolation
+Implement security measures from the ground up: JWT-based stateless authentication, shared secrets via environment variables, token verification on every request, and ownership checks enforced on all task operations.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Clean, Maintainable, and Extensible Architecture
+Follow clean architecture principles with proper abstraction layers, dependency inversion, and single responsibility. Code must be readable, testable, and extendable for future enhancements.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Production-Ready Practices with Minimal Over-Engineering
+Apply production-quality standards (testing, documentation, error handling) while avoiding unnecessary complexity. Focus on core functionality with clean extensibility points.
 
-### [PRINCIPLE_6_NAME]
+### VI. RESTful API Conventions and Multi-User Data Isolation
 
+All API endpoints follow REST conventions consistently. Each user may only access and modify their own data; no cross-user data access is permitted under any condition.
 
-[PRINCIPLE__DESCRIPTION]
+## Technology Stack Requirements
+- Frontend: Next.js 16+ (App Router)
+- Backend: Python FastAPI
+- ORM: SQLModel
+- Database: Neon Serverless PostgreSQL
+- Authentication: Better Auth (Frontend) + JWT
+- Authorization: JWT verification in FastAPI
+- Runtime: Python 3.13+ using UV
+- Spec-driven: Claude Code + Spec-Kit Plus
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
-
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
-
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
-
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+## Development Workflow
+All behavior must be defined in specs before implementation. Authentication is mandatory for all API access. Environment-based configuration for all secrets. Follow Agentic Dev Stack: Spec → Plan → Tasks → Implementation. Each specification must be independently reviewable.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+This constitution governs all development activities for Phase II. All implementation must align with the spec-first, agentic workflow. Amendments require specification update and documented impact assessment. All changes must be traceable through the Agentic Dev Stack process.
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+Specifications drive all feature development; implementation follows documented requirements. Success criteria include: 5 basic todo features working end-to-end, multi-user support with strict data isolation, secure auth flow, persistent storage in Neon PostgreSQL, and clean, readable code.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 3.0.0 | **Ratified**: 2026-01-22 | **Last Amended**: 2026-01-22

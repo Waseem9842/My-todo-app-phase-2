@@ -1,0 +1,165 @@
+# API Contract: Todo Task Management
+
+## Base URL
+`/api/{user_id}`
+
+## Endpoints
+
+### Create Task
+- **Method**: `POST`
+- **Path**: `/api/{user_id}/tasks`
+- **Description**: Creates a new task for the specified user
+- **Request Body**:
+  ```json
+  {
+    "title": "string (required, 1-255 chars)",
+    "description": "string (optional, max 1000 chars)",
+    "completed": "boolean (optional, default: false)"
+  }
+  ```
+- **Response**:
+  - Status: `201 Created`
+  - Body:
+    ```json
+    {
+      "id": "integer",
+      "title": "string",
+      "description": "string",
+      "completed": "boolean",
+      "owner_id": "integer",
+      "created_at": "datetime",
+      "updated_at": "datetime"
+    }
+    ```
+- **Error Responses**:
+  - `400 Bad Request`: Invalid input data
+  - `404 Not Found`: User ID does not exist
+
+### Get All Tasks
+- **Method**: `GET`
+- **Path**: `/api/{user_id}/tasks`
+- **Description**: Retrieves all tasks belonging to the specified user
+- **Response**:
+  - Status: `200 OK`
+  - Body:
+    ```json
+    {
+      "tasks": [
+        {
+          "id": "integer",
+          "title": "string",
+          "description": "string",
+          "completed": "boolean",
+          "owner_id": "integer",
+          "created_at": "datetime",
+          "updated_at": "datetime"
+        }
+      ]
+    }
+    ```
+- **Error Responses**:
+  - `404 Not Found`: User ID does not exist
+
+### Get Specific Task
+- **Method**: `GET`
+- **Path**: `/api/{user_id}/tasks/{id}`
+- **Description**: Retrieves a specific task by ID for the specified user
+- **Response**:
+  - Status: `200 OK`
+  - Body:
+    ```json
+    {
+      "id": "integer",
+      "title": "string",
+      "description": "string",
+      "completed": "boolean",
+      "owner_id": "integer",
+      "created_at": "datetime",
+      "updated_at": "datetime"
+    }
+    ```
+- **Error Responses**:
+  - `404 Not Found`: User ID or Task ID does not exist
+  - `403 Forbidden`: Task does not belong to the specified user
+
+### Update Task
+- **Method**: `PUT`
+- **Path**: `/api/{user_id}/tasks/{id}`
+- **Description**: Updates a specific task by ID for the specified user
+- **Request Body**:
+  ```json
+  {
+    "title": "string (required, 1-255 chars)",
+    "description": "string (optional, max 1000 chars)",
+    "completed": "boolean (required)"
+  }
+  ```
+- **Response**:
+  - Status: `200 OK`
+  - Body:
+    ```json
+    {
+      "id": "integer",
+      "title": "string",
+      "description": "string",
+      "completed": "boolean",
+      "owner_id": "integer",
+      "created_at": "datetime",
+      "updated_at": "datetime"
+    }
+    ```
+- **Error Responses**:
+  - `400 Bad Request`: Invalid input data
+  - `404 Not Found`: User ID or Task ID does not exist
+  - `403 Forbidden`: Task does not belong to the specified user
+
+### Delete Task
+- **Method**: `DELETE`
+- **Path**: `/api/{user_id}/tasks/{id}`
+- **Description**: Deletes a specific task by ID for the specified user
+- **Response**:
+  - Status: `204 No Content`
+- **Error Responses**:
+  - `404 Not Found`: User ID or Task ID does not exist
+  - `403 Forbidden`: Task does not belong to the specified user
+
+### Toggle Task Completion
+- **Method**: `PATCH`
+- **Path**: `/api/{user_id}/tasks/{id}/complete`
+- **Description**: Toggles the completion status of a specific task for the specified user
+- **Request Body**:
+  ```json
+  {
+    "completed": "boolean (required)"
+  }
+  ```
+- **Response**:
+  - Status: `200 OK`
+  - Body:
+    ```json
+    {
+      "id": "integer",
+      "title": "string",
+      "description": "string",
+      "completed": "boolean",
+      "owner_id": "integer",
+      "created_at": "datetime",
+      "updated_at": "datetime"
+    }
+    ```
+- **Error Responses**:
+  - `400 Bad Request`: Invalid input data
+  - `404 Not Found`: User ID or Task ID does not exist
+  - `403 Forbidden`: Task does not belong to the specified user
+
+## Common Headers
+- `Content-Type`: `application/json`
+- `Authorization`: `Bearer {jwt_token}` (for actual implementation)
+
+## Error Format
+All error responses follow this structure:
+```json
+{
+  "detail": "Error message describing the issue"
+}
+```
